@@ -1,0 +1,44 @@
+body {
+    background-image: url(./src/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.container, header, .main-space {
+display: flex;
+align-items: center;
+justify-content: center;
+align-content: center;
+}
+
+.container {
+    max-width: 1000px;
+    flex-wrap: wrap;
+}
+
+header {
+    flex-basis: 100%;
+    /* background-color: yellow; */
+    margin: 100px auto 20px;
+}
+
+.available-budget {
+    /* background-color: white; */
+    font-size: large;
+    font-weight: bold;
+    padding: 10px;
+    border: solid 2px;
+    
+}
+
+/* .main-space {
+
+} */
+
+.income {
+    background-color: greenyellow;
+}
+
+.outcome {
+    background-color: red;
+
+}
