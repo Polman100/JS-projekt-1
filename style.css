@@ -3,7 +3,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
-.container, header, .main-space {
+.container, header, body, .main-space {
 display: flex;
 align-items: center;
 justify-content: center;
@@ -11,18 +11,21 @@ align-content: center;
 }
 
 .container {
+    width: 50vw;
     max-width: 1000px;
+    min-width: 500px;
     flex-wrap: wrap;
+    background-color: green;
 }
 
 header {
     flex-basis: 100%;
-    /* background-color: yellow; */
-    margin: 100px auto 20px;
+    background-color: yellow;
+    margin: 100px auto 20px auto;
 }
 
 .available-budget {
-    /* background-color: white; */
+    background-color: white;
     font-size: large;
     font-weight: bold;
     padding: 10px;
@@ -30,15 +33,69 @@ header {
     
 }
 
-/* .main-space {
-
-} */
-
-.income {
-    background-color: greenyellow;
+.main-space {
+flex-wrap: wrap;
 }
 
+.income, .outcome {
+    width: 25vw;
+    max-width: 500px;
+    min-width: 250px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    border: 2px solid;
+    flex-basis: 50%;
+}
+.income {
+    background-color: greenyellow;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+}
 .outcome {
-    background-color: red;
+    background-color: lightcoral;
+    border-left: 1px solid;
+    border-bottom: 1px solid;
+}
 
+.income-list, .outcome-list {
+    width: 25vw;
+    max-width: 500px;
+    min-width: 250px;
+    border: 2px solid;
+    flex-basis: 50%;
+    min-height: 50vh;
+}
+
+.income-list { 
+    background-color: green;
+    border-right: 1px solid;
+    border-top: 1px solid;
+    /* justify-content: space-between; */
+    flex-direction: column;
+    align-content: space-between;
+}
+.outcome-list {
+    background-color: lightcoral;
+    border-left: 1px solid;
+    border-top: 1px solid;
+    /* justify-content: space-between;
+    flex-direction: column; */
+}
+.income-positions {
+    background-color: blue;
+    align-self: flex-start;
+}
+
+.sum-area-income {
+    background-color: brown;
+    align-self: flex-end;
+}
+
+
+p {
+    margin: 20px;
+    font-weight: bold;
+    font-size: medium;
 }
