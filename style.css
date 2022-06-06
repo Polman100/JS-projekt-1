@@ -14,14 +14,25 @@ align-content: center;
     width: 50vw;
     max-width: 1000px;
     min-width: 500px;
+    display: flex;
     flex-wrap: wrap;
     background-color: green;
+    margin-bottom: 50px;
+}
+
+img {
+    max-width: 120px;
+    max-height: 120px;
+    margin: 20px;
+    border-radius: 50%;
 }
 
 header {
     flex-basis: 100%;
     background-color: yellow;
     margin: 100px auto 20px auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .available-budget {
@@ -59,38 +70,53 @@ flex-wrap: wrap;
     border-bottom: 1px solid;
 }
 
-.income-list, .outcome-list {
+.income-list-div, .outcome-list-div {
     width: 25vw;
     max-width: 500px;
     min-width: 250px;
     border: 2px solid;
     flex-basis: 50%;
     min-height: 50vh;
+    position: relative;
 }
 
-.income-list { 
+.income-list-div { 
     background-color: green;
     border-right: 1px solid;
     border-top: 1px solid;
-    /* justify-content: space-between; */
-    flex-direction: column;
-    align-content: space-between;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column
+    /* align-content: space-between; */
 }
-.outcome-list {
+.outcome-list-div {
     background-color: lightcoral;
     border-left: 1px solid;
     border-top: 1px solid;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column
     /* justify-content: space-between;
     flex-direction: column; */
 }
 .income-positions {
     background-color: blue;
-    align-self: flex-start;
+    /* flex-basis: 80%; */
+    /* width: 100px;
+    height: 100px; */
+    /* align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: space-between; */
 }
 
 .sum-area-income {
+    /* height: 100px;
+    width: 100px; */
     background-color: brown;
-    align-self: flex-end;
+    /* flex-basis: 20%; */
+    /* align-self: flex-end; */
 }
 
 
@@ -98,4 +124,22 @@ p {
     margin: 20px;
     font-weight: bold;
     font-size: medium;
+    /* display: block; */
+}
+
+.item-class {
+    margin-top: 10px;
+    margin-left: 25px;
+}
+
+.positions-button {
+    margin-left: 20px;
+    position: absolute;
+    right: 70px;
+}
+
+.delete-button {
+    margin-left: 20px;
+    position: absolute;
+    right: 10px;
 }

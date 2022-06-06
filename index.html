@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <header>
-            <img class="logo">
+            <img class="logo" src="./src/logo.jpg">
             <h1 class="available-budget">Możesz jeszcze wydać ...</h1>
         </header>
         
@@ -20,30 +20,37 @@
             <div class="income">
                 <p>Przychody</p>
                 <form class="income-form">
-                    <input type="text" id="income-name" placeholder="Nazwa przychodu">
-                    <input type="number" placeholder="Kwota">
-                    <input type="button" value="Dodaj">
+                    <!-- placeholder="Nazwa przychodu" -->
+                    <input type="text" id="income-name" value="Pensja">
+                    <input type="number" id="income-value" placeholder="Kwota">
+                    <input type="button" id="button-income" value="Dodaj">
                 </form>
             </div>
 
             <div class="outcome">
                 <p>Wydatki</p>
                 <form class="outcome-form">
-                    <input type="text" id="outcome-name" placeholder="Nazwa wydatku">
-                    <input type="number" placeholder="Kwota">
-                    <input type="button" value="Dodaj">
+                    <!-- placeholder="Nazwa wydatku" -->
+                    <input type="text" id="outcome-name" value="Czynsz">
+                    <input type="number" id="outcome-value" placeholder="Kwota">
+                    <input type="button" id="button-outcome" value="Dodaj">
                 </form>
             </div>
-            <div class="income-list">
+            <div class="income-list-div">
                 <div class="income-positions">
+                    <ul id="income-list">                        
+                    </ul>
                     <p>Test</p>
+
                 </div>
                 <div class="sum-area-income">
-                    <p>Suma przychodów: </p>
+                    <p>Suma przychodów: </p><span id="income-total"></span>
                 </div>                  
             </div>
-            <div class="outcome-list">
+            <div class="outcome-list-div">
                 <div class="outcome-positions">
+                    <ul id="outcome-list">                        
+                    </ul>
                     <p>Test</p>
                 </div>
                 <div class="sum-area-outcome">
@@ -52,7 +59,6 @@
             </div>
 
         </main>
-
 
     </div>
 
