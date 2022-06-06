@@ -1,3 +1,5 @@
+import { nanoid } from './nanoid.js'
+
 // helper function
 const qs = (s) => document.querySelector(s);
 const getElement = (s) => document.getElementById(s);
@@ -16,15 +18,39 @@ const incomeList = getElement("income-list");
 const outcomeList = getElement("outcome-list");
 
 
+// declarations
+
+const incomeArray = []
+const outcomeArray = []
+
+// let nanoId = nanoid()
+
 // functions
 
-// const createItem = (itemName) => {
-//     const incomeItem = create("li");
-//     incomeItem.className = "item-class";  <<----- jak wyciągnąć takie funkcje, żeby odczytywać consta
-//     incomeItem.id = "item-id";
-//     incomeItem.innerText = itemName;
-// }
+const addNewObjectToArray = (text, value, array) => {
+    const object = {
+        id: nanoid(),
+        name: text,
+        amount: value,
+    };
+    array.push(object);
+};
 
+const createElement = (item) => {
+    const incomeItem = create("li");
+    incomeItem.className = "item-class";
+    incomeItem.id = item.id;
+    incomeItem.innerText = item.name + " - " + item.amount + "zł";
+    incomeList.appendChild(incomeItem);
+};
+
+
+const createLi = () => {
+    incomeList.innerHTML = ''
+    incomeArray.forEach(item =>{
+        createElement(item)
+    })
+};
 
 
 
@@ -39,17 +65,24 @@ document.addEventListener("DOMContentLoaded", function() {
 
 const addIncome = incomeButton.addEventListener("click", (e) => {
     e.preventDefault();
-    console.log("incomeButton is clicked");
+    // console.log("incomeButton is clicked");
     console.log(incomeName.value);
     console.log(incomeValue.value);
 
-    const incomeItem = create("li");
-    incomeItem.className = "item-class";
-    incomeItem.id = "item-id";              //trzeba by zmieniać id 
-    incomeItem.innerText = incomeName.value + " - ";
+    addNewObjectToArray(incomeName.value, incomeValue.value, incomeArray);
+    console.log(incomeArray);
 
-    const incomeItemValue = create("span");        //   <<----- czy to najlepsze podejście?
-    incomeItemValue.innerText = incomeValue.value + "zł";
+    createLi();
+
+
+
+    // const incomeItem = create("li");
+    // incomeItem.className = "item-class";
+    // incomeItem.id = nanoId;
+    // incomeItem.innerText = incomeName.value + " - ";
+
+    // const incomeItemValue = create("span");        //   <<----- czy to najlepsze podejście?
+    // incomeItemValue.innerText = incomeValue.value + "zł";
 
     const editButton = create("button");
     editButton.innerText = "Edytuj";
@@ -68,13 +101,12 @@ const addIncome = incomeButton.addEventListener("click", (e) => {
     // deleteButton.onclick = incomeItem.remove(incomeList);
 
     
-    appendToElement(incomeItem, incomeItemValue);
-    appendToElement(incomeItem, editButton);
-    appendToElement(incomeItem, deleteButton);
-    appendToElement(incomeList, incomeItem);
+    // appendToElement(incomeItem, incomeItemValue);
+    // appendToElement(incomeItem, editButton);
+    // appendToElement(incomeItem, deleteButton);
+    // appendToElement(incomeList, incomeItem);
 
     // + incomeValue.Value + "zł";  <<---- ciekawi mnie czemu to wyrzucało undefined przy dodaniu do incomeItem.innerText
-
 });
 
 const addOutcome = outcomeButton.addEventListener("click", (e) => {
