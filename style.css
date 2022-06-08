@@ -35,7 +35,7 @@ header {
     flex-direction: column;
 }
 
-.available-budget {
+#available-budget {
     background-color: white;
     font-size: large;
     font-weight: bold;

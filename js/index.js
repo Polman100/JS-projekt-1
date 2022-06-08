@@ -18,14 +18,13 @@ const incomeList = getElement("income-list");
 const outcomeList = getElement("outcome-list");
 const spanIncomeTotal = getElement("income-total");
 const spanOutcomeTotal = getElement("outcome-total");
+const remainingBudget = getElement("available-budget")
 
 
 // declarations
 
 let incomeArray = []
 let outcomeArray = []
-
-// let nanoId = nanoid()
 
 // functions
 
@@ -44,7 +43,7 @@ const removeObjectFromArray = (id, array) => {
         const newArray = incomeArray.filter((item) => item.id !== id);
         incomeArray = newArray;
         calculateIncome();
-        console.log(incomeArray, id, array)
+        console.log(incomeArray, id, array);
     } else if (array[0].type == "outcome") {
         const newArray = outcomeArray.filter((item) => item.id !== id);
         outcomeArray = newArray;
@@ -168,19 +167,32 @@ const createDeleteButton = (item, parent, array) => {
 //  createDeleteButton(item, listItem, array);  
 
 const calculateIncome = () => {
-    const incomeTotal = incomeArray.map(item => parseInt(item.amount, 10));
-    // console.log(incomeTotal);
-    const incomeTotal2 = incomeTotal.reduce((prev, next) => prev + next, 0);
-    console.log(incomeTotal2)
-    spanIncomeTotal.innerText = incomeTotal2
+    const incomeArrayNumbers = incomeArray.map(item => parseInt(item.amount, 10));
+    // console.log(incomeArrayNumbers);
+    const incomeTotal = incomeArrayNumbers.reduce((prev, next) => prev + next, 0);
+    console.log(incomeTotal)
+    spanIncomeTotal.innerText = incomeTotal
+    return incomeTotal
 }
 
 const calculateOutcome = () => {
-    const outcomeTotal = outcomeArray.map(item => parseInt(item.amount, 10));
-    // console.log(outcomeTotal);
-    const outcomeTotal2 = outcomeTotal.reduce((prev, next) => prev + next, 0);
-    console.log(outcomeTotal2)
-    spanOutcomeTotal.innerText = outcomeTotal2
+    const outcomeArrayNumbers = outcomeArray.map(item => parseInt(item.amount, 10));
+    // console.log(outcomeArrayNumbers);
+    const outcomeTotal = outcomeArrayNumbers.reduce((prev, next) => prev + next, 0);
+    console.log(outcomeTotal)
+    spanOutcomeTotal.innerText = outcomeTotal
+    return outcomeTotal
+}
+
+const calculateBudget = (income, outcome) => {
+    const result = income - outcome;
+    if (result > 0) {
+        remainingBudget.innerText = "Możesz jeszcze wydać " + result;
+    } else if (result < 0) {
+        remainingBudget.innerText = "Jesteś na minusie " + result;
+    } else {
+        remainingBudget.innerText = "Bilans wynosi zero";
+    };
 }
 
 // events
@@ -190,6 +202,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // addOutcome;
     calculateIncome(); 
     calculateOutcome();
+    // calculateBudget(incomeTotal, outcomeTotal)
 })
 
 incomeButton.addEventListener("click", (e) => {
