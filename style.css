@@ -121,9 +121,17 @@ flex-wrap: wrap;
 .sum-area-income {
     /* height: 100px;
     width: 100px; */
-    background-color: brown;
+    background-color: rgb(42, 165, 108);
+    align-items: center;
     /* flex-basis: 20%; */
     /* align-self: flex-end; */
+    display: flex;
+}
+
+.sum-area-outcome {
+    background-color: brown;
+    align-items: center;
+    display: flex;
 }
 
 
@@ -166,4 +174,12 @@ p {
 
 .edit-form {
     display: inline-block;
+}
+
+#income-total {
+    font-weight: bolder;
+}
+
+#outcome-total {
+    font-weight: bolder;
 }

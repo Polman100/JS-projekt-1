@@ -16,8 +16,6 @@ const outcomeName = getElement("outcome-name");
 const outcomeValue = getElement("outcome-value");
 const incomeList = getElement("income-list");
 const outcomeList = getElement("outcome-list");
-const spanIncomeTotal = getElement("income-total");
-const spanOutcomeTotal = getElement("outcome-total");
 
 
 // declarations
@@ -29,42 +27,40 @@ let outcomeArray = []
 
 // functions
 
-const addNewObjectToArray = (text, value, array, number) => {
+const addNewObjectToArray = (text, value, array) => {
     const object = {
         id: nanoid(),
         name: text,
         amount: value,
-        type: number,
     };
     array.push(object);
 };
 
 const removeObjectFromArray = (id, array) => {
-    if (array[0].type == "income") {
-        const newArray = incomeArray.filter((item) => item.id !== id);
+    if (array = incomeArray) {
+        const newArray = array.filter((item) => item.id !== id);
         incomeArray = newArray;
-        calculateIncome();
-        console.log(incomeArray, id, array)
-    } else if (array[0].type == "outcome") {
-        const newArray = outcomeArray.filter((item) => item.id !== id);
+    }
+    if (array = outcomeArray) {
+        const newArray = array.filter((item) => item.id !== id);
         outcomeArray = newArray;
-        calculateOutcome();
     }   
 }
 
 const editObjectInArray = (id, array, newText, newValue) => {
-    console.log(array, incomeArray)
-    console.log(array[0].type)
-    if (array[0].type == "income") {
+    console.log(id, array, newText, newValue)
+    console.log(incomeArray);
+    if (array = incomeArray) {
         array.find((item) => item.id == id).name = newText;
         array.find((item) => item.id == id).amount = newValue;
         // objectBeingEdited.name = newText;
         // objectBeingEdited.value = newValue;
         createLi(incomeList, incomeArray);
-        console.log(incomeArray);
-    } else if (array[0].type == "outcome") {
+    }
+    if (array = outcomeArray) {
         array.find((item) => item.id == id).name = newText;
         array.find((item) => item.id == id).amount = newValue;
+        console.log(outcomeArray);
         // objectBeingEdited.name = newText;
         // objectBeingEdited.value = newValue;
         createLi(outcomeList, outcomeArray);
@@ -98,9 +94,7 @@ const createLi = (list, array) => {
     list.innerHTML = ''
     array.forEach(item => {
         createIncomeElement(item, list, array);
-    });
-    calculateIncome();
-    calculateOutcome();
+    })
 };
 
 const createEditButton = (item, parent, array, previousName, previousValue) => {
@@ -162,52 +156,83 @@ const createDeleteButton = (item, parent, array) => {
         const itemToRemove = getElement(parent.id);
         itemToRemove.remove();                          // <<-- MIND BLOWN, że to działa (nie do końca)
         removeObjectFromArray(item.id, array);
-        // console.log(item.id, array)
+        console.log(item.id, array)
     });
-} 
-//  createDeleteButton(item, listItem, array);  
+}   
 
 const calculateIncome = () => {
     const incomeTotal = incomeArray.map(item => parseInt(item.amount, 10));
-    // console.log(incomeTotal);
+    console.log(incomeTotal);
     const incomeTotal2 = incomeTotal.reduce((prev, next) => prev + next, 0);
     console.log(incomeTotal2)
-    spanIncomeTotal.innerText = incomeTotal2
-}
 
-const calculateOutcome = () => {
-    const outcomeTotal = outcomeArray.map(item => parseInt(item.amount, 10));
-    // console.log(outcomeTotal);
-    const outcomeTotal2 = outcomeTotal.reduce((prev, next) => prev + next, 0);
-    console.log(outcomeTotal2)
-    spanOutcomeTotal.innerText = outcomeTotal2
 }
 
 // events
 
 document.addEventListener("DOMContentLoaded", function() {
-    // addIncome;
-    // addOutcome;
-    calculateIncome(); 
-    calculateOutcome();
+    addIncome;
+    addOutcome;
+    calculateIncome(); // <<--- jak stworzyć funkcję, która będzie liczyła sumę na bieżąco, niezależnie od tego co się zmieni
+    // calculateOutcome;
 })
 
-incomeButton.addEventListener("click", (e) => {
+const addIncome = incomeButton.addEventListener("click", (e) => {
     e.preventDefault();
+    // console.log("incomeButton is clicked");
+    // console.log(incomeName.value);
+    // console.log(incomeValue.value);
 
-    addNewObjectToArray(incomeName.value, incomeValue.value, incomeArray, "income");
-   
+    addNewObjectToArray(incomeName.value, incomeValue.value, incomeArray);
+    // console.log(incomeArray);
+
     createLi(incomeList, incomeArray);
-    console.log(incomeArray);
+
+    calculateIncome();
 
 });
 
-outcomeButton.addEventListener("click", (e) => {
+const addOutcome = outcomeButton.addEventListener("click", (e) => {
     e.preventDefault();
+    // console.log("outcomeButton is clicked");
+    // console.log(outcomeName.value);
+    // console.log(outcomeValue.value);
 
-    addNewObjectToArray(outcomeName.value, outcomeValue.value, outcomeArray, "outcome");
+    addNewObjectToArray(outcomeName.value, outcomeValue.value, outcomeArray);
+    console.log(outcomeArray);
 
     createLi(outcomeList, outcomeArray);
-    console.log(outcomeArray);
+
+
+
+
+    // const outcomeItem = create("li");
+    // outcomeItem.className = "item-class";
+    // outcomeItem.id = "item-id";
+    // outcomeItem.innerText = outcomeName.value + " - ";
+
+    // const outcomeItemValue = create("span");
+    // outcomeItemValue.innerText = outcomeValue.value + "zł";
+
+    // const editButton = create("button");
+    // editButton.innerText = "Edytuj";
+    // editButton.id = "edit-outcome";
+    // editButton.className = "positions-button";
+
+    // const deleteButton = create("button");
+    // deleteButton.innerText = "Usuń";
+    // deleteButton.id = "delete-outcome";
+    // deleteButton.className = "delete-button";
+    // deleteButton.addEventListener("click", (e) => {
+    //     const itemToRemove = getElement(incomeItem.id);
+    //     itemToRemove.remove();                          // <<-- MIND BLOWN, że to działa
+    // });
+    
+
+    
+    // appendToElement(outcomeItem, outcomeItemValue);
+    // appendToElement(outcomeItem, editButton);
+    // appendToElement(outcomeItem, deleteButton);
+    // appendToElement(outcomeList, outcomeItem);
 
 });
