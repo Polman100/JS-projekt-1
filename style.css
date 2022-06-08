@@ -100,7 +100,14 @@ flex-wrap: wrap;
     flex-direction: column; */
 }
 .income-positions {
-    background-color: blue;
+    background-color: rgb(0, 132, 255);
+    /* tutaj jest zmiana ----------------- */
+    /* display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap; */
+    /* tutaj jest zmiana -------------------- */
+
     /* flex-basis: 80%; */
     /* width: 100px;
     height: 100px; */
@@ -142,4 +149,21 @@ p {
     margin-left: 20px;
     position: absolute;
     right: 10px;
+}
+
+.save-button {
+    margin-left: 6px;
+}
+
+
+.edit-text-field, .edit-value-field {
+    max-width: 171px;
+}
+.edit-value-field{
+    max-width: 160px;
+    margin-left: 6px;
+}
+
+.edit-form {
+    display: inline-block;
 }
