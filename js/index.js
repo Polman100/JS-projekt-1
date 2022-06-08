@@ -42,12 +42,12 @@ const removeObjectFromArray = (id, array) => {
     if (array[0].type == "income") {
         const newArray = incomeArray.filter((item) => item.id !== id);
         incomeArray = newArray;
-        calculateIncome();
+        calculateTotal();
         console.log(incomeArray, id, array);
     } else if (array[0].type == "outcome") {
         const newArray = outcomeArray.filter((item) => item.id !== id);
         outcomeArray = newArray;
-        calculateOutcome();
+        calculateTotal();
     }   
 }
 
@@ -98,8 +98,8 @@ const createLi = (list, array) => {
     array.forEach(item => {
         createIncomeElement(item, list, array);
     });
-    calculateIncome();
-    calculateOutcome();
+    calculateTotal();
+    calculateTotal();
 };
 
 const createEditButton = (item, parent, array, previousName, previousValue) => {
@@ -166,30 +166,37 @@ const createDeleteButton = (item, parent, array) => {
 } 
 //  createDeleteButton(item, listItem, array);  
 
-const calculateIncome = () => {
+const calculateTotal = () => {
     const incomeArrayNumbers = incomeArray.map(item => parseInt(item.amount, 10));
     // console.log(incomeArrayNumbers);
     const incomeTotal = incomeArrayNumbers.reduce((prev, next) => prev + next, 0);
-    console.log(incomeTotal)
-    spanIncomeTotal.innerText = incomeTotal
-    return incomeTotal
-}
-
-const calculateOutcome = () => {
+    console.log(incomeTotal);
+    spanIncomeTotal.innerText = incomeTotal;
+    
     const outcomeArrayNumbers = outcomeArray.map(item => parseInt(item.amount, 10));
     // console.log(outcomeArrayNumbers);
     const outcomeTotal = outcomeArrayNumbers.reduce((prev, next) => prev + next, 0);
-    console.log(outcomeTotal)
-    spanOutcomeTotal.innerText = outcomeTotal
-    return outcomeTotal
+    console.log(outcomeTotal);
+    spanOutcomeTotal.innerText = outcomeTotal;
+
+    calculateBudget(incomeTotal, outcomeTotal)
 }
+
+// // const calculateTotal = () => {
+//     const outcomeArrayNumbers = outcomeArray.map(item => parseInt(item.amount, 10));
+//     // console.log(outcomeArrayNumbers);
+//     const outcomeTotal = outcomeArrayNumbers.reduce((prev, next) => prev + next, 0);
+//     console.log(outcomeTotal)
+//     spanOutcomeTotal.innerText = outcomeTotal
+//     return outcomeTotal
+// }
 
 const calculateBudget = (income, outcome) => {
     const result = income - outcome;
     if (result > 0) {
-        remainingBudget.innerText = "Możesz jeszcze wydać " + result;
+        remainingBudget.innerText = "Możesz jeszcze wydać " + result + " zł";
     } else if (result < 0) {
-        remainingBudget.innerText = "Jesteś na minusie " + result;
+        remainingBudget.innerText = "Jesteś na minusie " + result + " zł";
     } else {
         remainingBudget.innerText = "Bilans wynosi zero";
     };
@@ -200,8 +207,8 @@ const calculateBudget = (income, outcome) => {
 document.addEventListener("DOMContentLoaded", function() {
     // addIncome;
     // addOutcome;
-    calculateIncome(); 
-    calculateOutcome();
+    calculateTotal(); 
+    calculateTotal();
     // calculateBudget(incomeTotal, outcomeTotal)
 })
 
