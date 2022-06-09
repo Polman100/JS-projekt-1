@@ -62,7 +62,7 @@ flex-wrap: wrap;
     border-bottom: 1px solid;
 }
 .outcome {
-    background-color: lightcoral;
+    background-color: rgb(243, 72, 72);
     border-left: 1px solid;
     border-bottom: 1px solid;
 }
@@ -74,7 +74,7 @@ flex-wrap: wrap;
     border: 2px solid;
     flex-basis: 50%;
     min-height: 50vh;
-    position: relative;
+
 }
 
 .income-list-div { 
@@ -118,6 +118,7 @@ p {
 .item-class {
     margin-top: 10px;
     margin-left: 25px;
+    position: relative;
 }
 
 .positions-button {
@@ -153,4 +154,10 @@ p {
 
 #outcome-total {
     font-weight: bolder;
+}
+
+.income-positions, .outcome-positions {
+    min-height: 50vh;
+    max-height: 50vh;
+    overflow-y: scroll;
 }

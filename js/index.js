@@ -41,7 +41,6 @@ const removeObjectFromArray = (id, array) => {
         const newArray = incomeArray.filter((item) => item.id !== id);
         incomeArray = newArray;
         calculateTotal();
-        console.log(incomeArray, id, array);
     } else if (array[0].type == "outcome") {
         const newArray = outcomeArray.filter((item) => item.id !== id);
         outcomeArray = newArray;
@@ -50,13 +49,10 @@ const removeObjectFromArray = (id, array) => {
 }
 
 const editObjectInArray = (id, array, newText, newValue) => {
-    console.log(array, incomeArray)
-    console.log(array[0].type)
     if (array[0].type == "income") {
         array.find((item) => item.id == id).name = newText;
         array.find((item) => item.id == id).amount = newValue;
         createLi(incomeList, incomeArray);
-        console.log(incomeArray);
     } else if (array[0].type == "outcome") {
         array.find((item) => item.id == id).name = newText;
         array.find((item) => item.id == id).amount = newValue;
@@ -83,7 +79,6 @@ const createLi = (list, array) => {
         createIncomeElement(item, list, array);
     });
     calculateTotal();
-    calculateTotal();
 };
 
 const createEditButton = (item, parent, array, previousName, previousValue) => {
@@ -95,7 +90,6 @@ const createEditButton = (item, parent, array, previousName, previousValue) => {
     editButton.addEventListener("click", (e) => {
         e.preventDefault();
         const itemToEdit = getElement(item.id);
-        console.log(itemToEdit);
         itemToEdit.innerText = '';
         const editForm = create("form");
         editForm.className = "edit-form"
@@ -141,12 +135,10 @@ const createDeleteButton = (item, parent, array) => {
 const calculateTotal = () => {
     const incomeArrayNumbers = incomeArray.map(item => parseInt(item.amount, 10));
     const incomeTotal = incomeArrayNumbers.reduce((prev, next) => prev + next, 0);
-    console.log(incomeTotal);
     spanIncomeTotal.innerText = incomeTotal;
     
     const outcomeArrayNumbers = outcomeArray.map(item => parseInt(item.amount, 10));
     const outcomeTotal = outcomeArrayNumbers.reduce((prev, next) => prev + next, 0);
-    console.log(outcomeTotal);
     spanOutcomeTotal.innerText = outcomeTotal;
 
     calculateBudget(incomeTotal, outcomeTotal)
@@ -176,7 +168,6 @@ incomeButton.addEventListener("click", (e) => {
     addNewObjectToArray(incomeName.value, incomeValue.value, incomeArray, "income");
    
     createLi(incomeList, incomeArray);
-    console.log(incomeArray);
 
 });
 
@@ -186,6 +177,5 @@ outcomeButton.addEventListener("click", (e) => {
     addNewObjectToArray(outcomeName.value, outcomeValue.value, outcomeArray, "outcome");
 
     createLi(outcomeList, outcomeArray);
-    console.log(outcomeArray);
 
 });
