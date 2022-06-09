@@ -16,20 +16,18 @@ align-content: center;
     min-width: 500px;
     display: flex;
     flex-wrap: wrap;
-    background-color: green;
     margin-bottom: 50px;
 }
 
 img {
-    max-width: 120px;
-    max-height: 120px;
+    max-width: 135px;
+    max-height: 135px;
     margin: 20px;
     border-radius: 50%;
 }
 
 header {
     flex-basis: 100%;
-    background-color: yellow;
     margin: 100px auto 20px auto;
     display: flex;
     flex-direction: column;
@@ -41,7 +39,6 @@ header {
     font-weight: bold;
     padding: 10px;
     border: solid 2px;
-    
 }
 
 .main-space {
@@ -60,7 +57,7 @@ flex-wrap: wrap;
     flex-basis: 50%;
 }
 .income {
-    background-color: greenyellow;
+    background-color: rgb(64, 255, 47);
     border-right: 1px solid;
     border-bottom: 1px solid;
 }
@@ -81,13 +78,12 @@ flex-wrap: wrap;
 }
 
 .income-list-div { 
-    background-color: green;
+    background-color: greenyellow;
     border-right: 1px solid;
     border-top: 1px solid;
     display: flex;
     justify-content: space-between;
     flex-direction: column
-    /* align-content: space-between; */
 }
 .outcome-list-div {
     background-color: lightcoral;
@@ -96,42 +92,20 @@ flex-wrap: wrap;
     display: flex;
     justify-content: space-between;
     flex-direction: column
-    /* justify-content: space-between;
-    flex-direction: column; */
-}
-.income-positions {
-    background-color: rgb(0, 132, 255);
-    /* tutaj jest zmiana ----------------- */
-    /* display: flex;
-    align-items: center;
-    align-content: center;
-    flex-wrap: wrap; */
-    /* tutaj jest zmiana -------------------- */
-
-    /* flex-basis: 80%; */
-    /* width: 100px;
-    height: 100px; */
-    /* align-self: flex-start;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: space-between; */
 }
 
 .sum-area-income {
-    /* height: 100px;
-    width: 100px; */
     background-color: rgb(42, 165, 108);
     align-items: center;
-    /* flex-basis: 20%; */
-    /* align-self: flex-end; */
     display: flex;
+    border-top: 2px solid;
 }
 
 .sum-area-outcome {
     background-color: brown;
     align-items: center;
     display: flex;
+    border-top: 2px solid;
 }
 
 
@@ -139,7 +113,6 @@ p {
     margin: 20px;
     font-weight: bold;
     font-size: medium;
-    /* display: block; */
 }
 
 .item-class {
@@ -163,12 +136,10 @@ p {
     margin-left: 6px;
 }
 
-
 .edit-text-field, .edit-value-field {
-    max-width: 171px;
+    max-width: 155px;
 }
 .edit-value-field{
-    max-width: 160px;
     margin-left: 6px;
 }
 

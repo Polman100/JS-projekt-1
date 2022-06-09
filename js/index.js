@@ -1,10 +1,8 @@
 import { nanoid } from './nanoid.js'
 
 // helper function
-const qs = (s) => document.querySelector(s);
 const getElement = (s) => document.getElementById(s);
 const create = (s) => document.createElement(s);
-const appendToElement = (x, s) =>  x.appendChild(s);
 
 // DOM
 
@@ -57,29 +55,15 @@ const editObjectInArray = (id, array, newText, newValue) => {
     if (array[0].type == "income") {
         array.find((item) => item.id == id).name = newText;
         array.find((item) => item.id == id).amount = newValue;
-        // objectBeingEdited.name = newText;
-        // objectBeingEdited.value = newValue;
         createLi(incomeList, incomeArray);
         console.log(incomeArray);
     } else if (array[0].type == "outcome") {
         array.find((item) => item.id == id).name = newText;
         array.find((item) => item.id == id).amount = newValue;
-        // objectBeingEdited.name = newText;
-        // objectBeingEdited.value = newValue;
         createLi(outcomeList, outcomeArray);
     }   
-    
-    // if (array = outcomeArray) {
-    //     array.find((item) => item.id == id);
-    //     let properties = {
-    //         "name": newText,
-    //         "value": newValue,
-    //     };
-    //     createLi(outcomeList, outcomeArray)
-    // }   
+
 } 
-
-
 
 const createIncomeElement = (item, list, array) => {
     const listItem = create("li");
@@ -110,7 +94,6 @@ const createEditButton = (item, parent, array, previousName, previousValue) => {
     parent.appendChild(editButton);
     editButton.addEventListener("click", (e) => {
         e.preventDefault();
-        // console.log(item.id);
         const itemToEdit = getElement(item.id);
         console.log(itemToEdit);
         itemToEdit.innerText = '';
@@ -125,10 +108,8 @@ const createEditButton = (item, parent, array, previousName, previousValue) => {
         editFormValueField.id = "edit-value";
         editFormValueField.type = "number"
         editFormValueField.className = "edit-value-field"
-        // console.log(previousValue)
         editFormValueField.value = previousValue
         editForm.append(editFormTextField, editFormValueField);
-        // saveButton
         const saveButton = create("button")
         saveButton.innerText = "Zapisz"
         saveButton.id = item.id
@@ -138,16 +119,8 @@ const createEditButton = (item, parent, array, previousName, previousValue) => {
             const newText = getElement("edit-name")
             const newValue = getElement("edit-value")
             editObjectInArray(item.id, array, newText.value, newValue.value);
-
         });
-
-        itemToEdit.append(editForm, saveButton)
-        
-        
-        // itemToEdit.removeChild(button.className = "positions-button");
-
-        
-
+        itemToEdit.append(editForm, saveButton)     
     })
 };
 
@@ -159,37 +132,25 @@ const createDeleteButton = (item, parent, array) => {
     parent.appendChild(deleteButton)
     deleteButton.addEventListener("click", (e) => {
         const itemToRemove = getElement(parent.id);
-        itemToRemove.remove();                          // <<-- MIND BLOWN, że to działa (nie do końca)
+        itemToRemove.remove();                        
         removeObjectFromArray(item.id, array);
-        // console.log(item.id, array)
+        
     });
 } 
-//  createDeleteButton(item, listItem, array);  
 
 const calculateTotal = () => {
     const incomeArrayNumbers = incomeArray.map(item => parseInt(item.amount, 10));
-    // console.log(incomeArrayNumbers);
     const incomeTotal = incomeArrayNumbers.reduce((prev, next) => prev + next, 0);
     console.log(incomeTotal);
     spanIncomeTotal.innerText = incomeTotal;
     
     const outcomeArrayNumbers = outcomeArray.map(item => parseInt(item.amount, 10));
-    // console.log(outcomeArrayNumbers);
     const outcomeTotal = outcomeArrayNumbers.reduce((prev, next) => prev + next, 0);
     console.log(outcomeTotal);
     spanOutcomeTotal.innerText = outcomeTotal;
 
     calculateBudget(incomeTotal, outcomeTotal)
 }
-
-// // const calculateTotal = () => {
-//     const outcomeArrayNumbers = outcomeArray.map(item => parseInt(item.amount, 10));
-//     // console.log(outcomeArrayNumbers);
-//     const outcomeTotal = outcomeArrayNumbers.reduce((prev, next) => prev + next, 0);
-//     console.log(outcomeTotal)
-//     spanOutcomeTotal.innerText = outcomeTotal
-//     return outcomeTotal
-// }
 
 const calculateBudget = (income, outcome) => {
     const result = income - outcome;
@@ -205,11 +166,8 @@ const calculateBudget = (income, outcome) => {
 // events
 
 document.addEventListener("DOMContentLoaded", function() {
-    // addIncome;
-    // addOutcome;
     calculateTotal(); 
     calculateTotal();
-    // calculateBudget(incomeTotal, outcomeTotal)
 })
 
 incomeButton.addEventListener("click", (e) => {
